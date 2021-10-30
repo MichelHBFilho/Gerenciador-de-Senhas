@@ -1,5 +1,7 @@
 #include <iostream>
+#include <array>
 #include "Conta.hpp"
+#include "criptografia.hpp"
 #include "inputs.hpp"
 Conta inputs() {
 	std::cout << "Qual o serviço? ";
@@ -17,5 +19,7 @@ Conta inputs() {
 	std::cin >> senha;
 	std::cout << std::endl;
 
-	return Conta(servico, usuario, senha);
+	std::array<int, 32> senhaCriptografada = criptografa(senha);
+
+	return Conta(servico, usuario, senhaCriptografada);
 }
