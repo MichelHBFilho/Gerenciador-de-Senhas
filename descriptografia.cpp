@@ -9,13 +9,13 @@ void imprimeContas(std::vector<Conta> contas) {
 		std::cout << "Serviço: " << i.servico << std::endl;
 		std::cout << "Usuario: " << i.usuario << std::endl;
 		std::cout << "Senha:   " << descriptografa(i.senha) << std::endl;
-
 	}
 }
 
 std::string descriptografa(std::array<int, 32> senha) {
 	char senhaDescriptografada[32] = "";
 	for (int i = 0; i < 31; i++) {
+		if (senha[31] == 0) return "";
 		senhaDescriptografada[i] =  char(senha[i] / senha[31]);
 	}
 	return std::string(senhaDescriptografada);

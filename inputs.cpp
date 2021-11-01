@@ -4,17 +4,17 @@
 #include "criptografia.hpp"
 #include "inputs.hpp"
 Conta inputs() {
-	std::cout << "Qual o serviço? ";
+	std::cout << "Serviço: ";
 	std::string servico;
 	std::cin >> servico;
 	std::cout << std::endl;
 
-	std::cout << "O seu usuario de login? ";
+	std::cout << "Usuario: ";
 	std::string usuario;
 	std::cin >> usuario;
 	std::cout << std::endl;
 
-	std::cout << "E a senha? ";
+	std::cout << "Senha: ";
 	std::string senha;
 	std::cin >> senha;
 	std::cout << std::endl;

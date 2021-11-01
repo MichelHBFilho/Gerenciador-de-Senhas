@@ -1,3 +1,4 @@
 #pragma once
 #include "Conta.hpp"
-void salvaNoArquivo(Conta& conta);
+#include <vector>
+void salvaNoArquivo(Conta& conta, std::vector<Conta>& contas);

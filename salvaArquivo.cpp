@@ -5,20 +5,28 @@
 #include "inputs.hpp"
 #include "salvaArquivo.hpp"
 #include <iostream>
-void salvaNoArquivo(Conta& conta) {
+#include <vector>
+#include "leArquivo.hpp"
+#include "criptografia.hpp"
+void salvaNoArquivo(Conta& conta, std::vector<Conta>& contas) {
+	std::array<int, 32> senhaMestra = criptografa(leSenhaMestre());
 	std::ofstream arquivo;
-	arquivo.open("senhas.txt", std::ios::app);
-
-	if (!arquivo.is_open()) {
-		std::cout << "Erro ao abrir o arquivo" << std::endl;
-		exit(1);
-	}
-
-	arquivo << conta.servico << std::endl;
-	arquivo << conta.usuario << std::endl;
-	for (int i = 0; i < 32; i++) {
-		arquivo << conta.senha[i] << " ";
+	arquivo.open("senhas.txt");
+	contas.push_back(conta);
+	arquivo << contas.size() << std::endl;
+	
+	for (int i : senhaMestra) {
+		arquivo << i << " ";
 	}
 	arquivo << std::endl;
-	arquivo.close();
+
+	for (Conta i : contas) {
+		arquivo << i.servico << std::endl;
+		arquivo << i.usuario << std::endl;
+		
+		for (int j = 0; j < 32; j++) {
+			arquivo << i.senha[j] << " ";
+		}
+		arquivo << std::endl;
+	}
 }
