@@ -18,6 +18,16 @@ void limpaTela() {
 	}
 #endif
 
+void continuar() {
+	cout << endl << "Continuar [S/n] ";
+	char op;
+	cin >> op;
+	if (op != 'S' && op != 's') {
+		cout << "Obrigado, tchau!" << endl;
+		exit(0);
+	}
+}
+
 void login() {
 	string tentativa;
 	string senhaMestra = leSenhaMestre();
@@ -45,10 +55,10 @@ int main() {
 
 	while (true) {
 		cout << "O que deseja fazer? " << endl;
-		cout << "1- Listar serviços" << endl;
+		cout << "1- Listar serviï¿½os" << endl;
 		cout << "2- Ver senhas" << endl;
-		cout << "3- Pesquisar por serviço" << endl;
-		cout << "4- Adicionar novo serviço" << endl;
+		cout << "3- Pesquisar por serviï¿½o" << endl;
+		cout << "4- Adicionar novo serviï¿½o" << endl;
 		cout << "5- Sair" << endl;
 
 		int op;
@@ -58,10 +68,11 @@ int main() {
 
 		switch (op) {
 		case 1: {
-			cout << "Você tem os seguintes serviços registrados: " << endl;
+			cout << "VocÃª tem os seguintes serviÃ§os registrados: " << endl;
 			for (Conta i : contas) {
 				cout << i.servico << endl;
 			}
+			continuar();
 			break;
 		}
 		case 2: {
@@ -71,10 +82,11 @@ int main() {
 				cout << "Usuario de login: " << i.usuario << endl;
 				cout << "Senha: " << descriptografa(i.senha) << endl;
 			}
+			continuar();
 			break;
 		}
 		case 3: {
-			cout << "Qual serviço você deseja encontrar? ";
+			cout << "Qual serviï¿½o vocï¿½ deseja encontrar? ";
 			string servico;
 			cin >> servico;
 			bool achou = false;
@@ -91,8 +103,10 @@ int main() {
 				continue;
 			}
 
-			if (achou) break;
-			cout << "Não encontramos este serviço em nosso banco" << endl;
+			if (!achou) {
+				cout << "Nï¿½o encontramos este serviï¿½o em nosso banco" << endl;
+			}
+			continuar();
 			break;
 		}
 		case 4: {
